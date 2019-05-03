@@ -28,10 +28,11 @@ export default class Login extends React.Component {
               console.log('you\'re logged in', res.data, user.email)
               this.props.history.push('/profile')
               return res.data;
-            }) 
+            })
             .catch(err => {
               console.log(err)
             })
+
   }
   
   render(){
