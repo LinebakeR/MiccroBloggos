@@ -32,17 +32,17 @@ export default class Profile extends React.Component {
                 <Card
                     bg="dark"
                     text="white"
-                    style={{width: '18rem'}}>
+                    style={{width: '50rem'}}>
                     <Card.Header>Your Profile</Card.Header>
                     <Card.Body>
-                        <Card.Title>Hello {this.state.username} !</Card.Title>
+                        <Card.Title style={{textAlign: "center"}}>Hello {this.state.username} !</Card.Title>
                         <Card.Text>
                             <tr>
-                                <td>Your username is:</td>
-                                <td>{this.state.username}</td>
+                                <td>Your username is :</td>
+                                <td> {this.state.username}</td>
                             </tr>
                             <tr>
-                                <td>Your email is:</td>
+                                <td>Your email is :</td>
                                 <td>{this.state.email}</td>
                             </tr>
                         </Card.Text>
