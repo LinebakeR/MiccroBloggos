@@ -26,6 +26,7 @@ export default class App extends React.Component {
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/login">Login</Nav.Link>
                             <Nav.Link href="/register">Register</Nav.Link>
+                            <Nav.Link href="/members">Members</Nav.Link>
                         </Nav>
                             </li>
                         </ul>

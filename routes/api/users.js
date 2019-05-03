@@ -10,7 +10,6 @@ const User = require('../../models/User');
 // @route   POST api/users @desc    Register new user @access  Public
 router.post('/', (req, res) => {
     const {username, email, password} = req.body;
-
     // Simple validation
     if (!username || !email || !password) {
         return res
@@ -56,6 +55,13 @@ router.post('/', (req, res) => {
                 })
             })
         })
+});
+router.get('/', (req, res) => {
+    User.find({})
+    .then(users => {
+        console.log(users);
+        res.send(users);
+    })
 });
 
 module.exports = router;

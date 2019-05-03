@@ -56,7 +56,6 @@ router.post('/', (req, res) => {
 // router.get('/user', auth, (req, res) => {
 //     let param = {_id: req.query.id}
 //     User.findById(param, function(err, user))
-        
 //         .then(user=> res.json(user))
 // });
 
