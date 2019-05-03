@@ -9,7 +9,7 @@ const Ticket = require('../../models/ticket');
 //@desc get a post
 //@access public
 router.get("/:id", (req, res) => {
-    const id = req.params.id
+    const id = req.params.id;
     Ticket.findById(id, function (err, docs) {
         res.json(docs)
     })
