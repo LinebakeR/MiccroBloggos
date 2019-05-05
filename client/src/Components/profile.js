@@ -1,6 +1,7 @@
 import React from 'react';
 import jwt_decode from 'jwt-decode';
 import {Card} from 'react-bootstrap';
+import {getUser} from "../Utils/auth";
 
 export default class Profile extends React.Component {
     constructor() {
@@ -10,21 +11,16 @@ export default class Profile extends React.Component {
             email:'',
             id:''
         }
-        
+    }
 
-    }
     componentDidMount() {
-        const token = localStorage.getItem('jwtSecret');
-        console.log(token);
-        const decoded = jwt_decode(token)
+        const user = getUser();
         this.setState({
-            username: decoded.username, 
-            email: decoded.email,
-            ìd: decoded.id
+            username: user.username,
+            email: user.email,
+            ìd: user.id
         })
- 
     }
-    
 
     render() {
         return (

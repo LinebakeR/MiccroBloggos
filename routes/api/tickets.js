@@ -24,19 +24,26 @@ router.get('/', (req, res) => {
         .then(tickets => res.json(tickets))
 });
 
+router.get('/user/:userId', (req, res) => {
+    Ticket.find({userId: req.params.userId})
+        .then(tickets => res.json(tickets));
+});
+
 //@route POST api/tickets
 //@desc Creat a post
 //@access private
-router.post('/', auth, (req, res) => {
+router.post('/:userId', (req, res) => {
     let ticket = new Ticket({
         title: req.body.title,
-        content: req.body.content
+        content: req.body.content,
+        userId: req.params.userId
     });
     ticket.save()
         .then(ticket => {
             res.status(200).json({'ticket': 'ticket added successfully'});
         })
         .catch(err => {
+            console.log(err);
             res.status(400).send('adding new ticket failed');
         });
 });
@@ -44,7 +51,7 @@ router.post('/', auth, (req, res) => {
 //@route DELETE api/tickets/:id
 //@desc Delete a post
 //@access private
-router.delete('/:id',auth, (req, res) => {
+router.delete('/:id', (req, res) => {
     Ticket.findById(req.params.id)
         .then(ticket => ticket.remove().then(() => res.json({success: true})))
         .catch(err => res.status(404).json({success: false}));

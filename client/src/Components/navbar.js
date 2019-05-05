@@ -1,12 +1,14 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import {BrowserRouter as Router, Route, Link, withRouter, Li} from "react-router-dom";
-import {Navbar, Nav} from 'react-bootstrap';
+import {Nav} from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
+import Button from "react-bootstrap/Button";
+import { withRouter } from 'react-router-dom';
 
-export default class App extends React.Component {
+class Navbar extends React.Component {
 
     render() {
+        console.log(this.props)
         return (
             <div>
                 <Nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
@@ -15,7 +17,7 @@ export default class App extends React.Component {
                             data-toogle='collapse'
                             data-target='#navbar1'
                             aria-expanded='false'
-                            aria-lable='Toogle navigation'>
+                            aria-label='Toogle navigation'>
                             <span className='navbar-toogler-icons'></span>
                     </button>
 
@@ -28,7 +30,13 @@ export default class App extends React.Component {
                                     <Nav.Link href="/profile">Profile</Nav.Link>
                                     <Nav.Link href="/register">Register</Nav.Link>
                                     <Nav.Link href="/members">Members</Nav.Link>
-                                    <Nav.Link href="/">Logout</Nav.Link>
+                                    <Nav.Item href="/">
+                                        <Button onClick={()=> {
+                                            console.log('je suis la');
+                                            localStorage.removeItem('jwtSecret');
+                                            this.props.history.push("/");
+                                        }}>Logout</Button>
+                                    </Nav.Item>
                                 </Nav>
                             </li>
                         </ul>
@@ -38,3 +46,5 @@ export default class App extends React.Component {
         )
     }
 }
+
+export default withRouter(Navbar)
