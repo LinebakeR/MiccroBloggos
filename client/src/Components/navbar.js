@@ -25,11 +25,12 @@ class Navbar extends React.Component {
                             <li className='nav-item'>
                                 <Nav className="mr-auto">
                                     <Nav.Link href="/">Home</Nav.Link>
-                                    <Nav.Link href="/login">Login</Nav.Link>
-                                    <Nav.Link href="/profile">Profile</Nav.Link>
-                                    <Nav.Link href="/register">Register</Nav.Link>
-                                    <Nav.Link href="/members">Members</Nav.Link>
                                     <Nav.Item href="/">
+                                    <Nav.Link href="/profile">Profile</Nav.Link>
+                                    <Nav.Link href="/members">Members</Nav.Link>
+                                    const loginRegLink = (
+                                    <Nav.Link href="/login">Login</Nav.Link>
+                                    <Nav.Link href="/register">Register</Nav.Link>
                                         <Button onClick={()=> {
                                             console.log('je suis la');
                                             localStorage.removeItem('jwtSecret');
@@ -37,7 +38,7 @@ class Navbar extends React.Component {
                                         }}>Logout</Button>
                                     </Nav.Item>
                                 </Nav>
-                            </li>
+                            </li> 
                         </ul>
                     </div>
                 </Nav>
