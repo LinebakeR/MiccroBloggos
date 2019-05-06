@@ -64,4 +64,20 @@ router.get('/', (req, res) => {
     })
 });
 
+router.get('/', (req, res) => {
+    User.findByIdAndUpdate(req.params.id, { $set: {"username": req.body.username, 'email': req.body.email }, function(
+    err,
+    user
+    ) {
+      if (err) {
+        res.status(400);
+        res.send(err);
+        return;
+      }
+      res.send({ message: "User Udpated successfully!", user });
+    },
+    })
+});
+
+
 module.exports = router;
