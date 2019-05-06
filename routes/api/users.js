@@ -66,11 +66,11 @@ router.get('/', (req, res) => {
 });
 
 router.put('/edit', auth, (req, res) => {
-    let userId = { id: req.user.id }
-    let update = {profile: req.body.profile}
-    let option = {new: true}
+    let userId = { _id: req.user.id }
+    let update = {username: req.body.username, email: req.body.email}
+    let option = {returnNewDocument: true}
     console.log('coucou1', req.user);
-    User.findOneAndUpdate(userId, update, option, function(
+    User.findOneAndUpdate(userId, { $set: update }, option, function(
     err,
     user
     ) {
