@@ -29,9 +29,8 @@ class Navbar extends React.Component {
                                     <Nav.Link href="/profile">Profile</Nav.Link>
                                     <Nav.Link href="/register">Register</Nav.Link>
                                     <Nav.Link href="/members">Members</Nav.Link>
-                                    <Nav.Item href="/">
+                                <Nav.Item>
                                         <Button onClick={()=> {
-                                            console.log('je suis la');
                                             localStorage.removeItem('jwtSecret');
                                             this.props.history.push("/");
                                         }}>Logout</Button>
