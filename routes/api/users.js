@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
+const auth = require('../../middleware/auth')
 
 // User Model
 const User = require('../../models/User');
@@ -64,19 +65,25 @@ router.get('/', (req, res) => {
     })
 });
 
-router.get('/', (req, res) => {
-    User.findByIdAndUpdate(req.params.id, { $set: {"username": req.body.username, 'email': req.body.email }, function(
+router.put('/edit', auth, (req, res) => {
+    let userId = { id: req.user.id }
+    let update = {profile: req.body.profile}
+    let option = {new: true}
+    console.log('coucou1', req.user);
+    User.findOneAndUpdate(userId, update, option, function(
     err,
     user
     ) {
+        console.log('coucou2');
       if (err) {
+          console.log("[", err, "]")
         res.status(400);
         res.send(err);
         return;
       }
       res.send({ message: "User Udpated successfully!", user });
     },
-    })
+    )
 });
 
 

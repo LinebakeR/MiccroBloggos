@@ -1,13 +1,8 @@
 import React from 'react';
 import jwt_decode from 'jwt-decode';
-<<<<<<< HEAD
 import {Button, Modal, Card, Form} from 'react-bootstrap';
 import axios from 'axios';
 
-=======
-import {Card} from 'react-bootstrap';
-import {getUser} from "../Utils/auth";
->>>>>>> 951632788e45f7ae18ac111a078c76391d83f839
 
 export default class Profile extends React.Component {
     constructor() {
@@ -15,10 +10,8 @@ export default class Profile extends React.Component {
         this.state = {
             username: '',
             email: '',
-            id: '',
             show: false,
         }
-<<<<<<< HEAD
         this.onChange = this.onChange.bind(this)
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -40,33 +33,26 @@ export default class Profile extends React.Component {
         console.log(token);
         const decoded = jwt_decode(token)
         this.setState({username: decoded.username, email: decoded.email, ìd: decoded.id})
-        this.setState({name: this.props.name});
-        this.setState({newName: this.props.name});
-        this.setState({email: this.props.email});
-        this.setState({newEmail: this.props.email});
+         this.setState({newName: this.props.username});
+         this.setState({newEmail: this.props.email});
     }
-    editProfile = editUser => {
-        this.setState({username: this.state.newName});
-        this.setState({email: this.state.newEmail});
-        
-        axios
-            .put('http://127.0.0.1:4242/api/users', editUser)
+    editProfile = e => {
+
+        const profile = {
+            username: this.state.username,
+            email: this.state.email
+        };
+        const token = localStorage.getItem('jwtSecret');
+        console.log(this.state.newName)
+        axios.put('http://127.0.0.1:4242/api/users/edit', profile, {headers: {'x-auth-token': token}})
             .then(res => {
-                this.props.history.push('/profile');
-                console.log('Updated with success')
+                console.log('Updated !')
+                console.log(profile);
                 return res.data
             })
-=======
-    }
-
-    componentDidMount() {
-        const user = getUser();
-        this.setState({
-            username: user.username,
-            email: user.email,
-            ìd: user.id
-        })
->>>>>>> 951632788e45f7ae18ac111a078c76391d83f839
+            .catch(err =>{
+                console.log(err);
+            })
     }
 
     render() {
@@ -104,7 +90,7 @@ export default class Profile extends React.Component {
                     Edit
                 </Button>
 
-                <Modal show={this.state.show} onHide={this.handleClose}>
+                <Modal method='POST' show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Edit your Profile</Modal.Title>
                     </Modal.Header>
@@ -113,7 +99,7 @@ export default class Profile extends React.Component {
                     name="username"
                     type="username"
                     placeholder="Enter your new Username"
-                    value={this.state.newName}
+                    value={this.state.username}
                     onChange={this.onChange}/>
                 <Form.Text className="text-muted"></Form.Text>
                     </Modal.Body>
@@ -122,7 +108,7 @@ export default class Profile extends React.Component {
                     name="email"
                     type="email"
                     placeholder="Enter your new Email"
-                    value={this.state.newEmail}
+                    value={this.state.email}
                     onChange={this.onChange}/>
                 <Form.Text className="text-muted"></Form.Text>
                     </Modal.Body>
@@ -131,7 +117,8 @@ export default class Profile extends React.Component {
                             Close
                         </Button>
                         <Button 
-                        variant="primary" 
+                        type='submit'
+                        variant="primary"
                         onClick={this.editProfile}>
                             Save Changes
                         </Button>
