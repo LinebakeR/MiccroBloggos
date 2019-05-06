@@ -48,6 +48,28 @@ router.post('/:userId', (req, res) => {
         });
 });
 
+//@route POST api/tickets
+//@desc update a post
+//@access private
+router.post('/update/:id',  (req, res) => {
+    Ticket.findById(req.params.id, function(err, ticket){
+        if(!ticket) {
+            res.status(404).send('ticket not found')
+        }
+        else {
+            ticket.content = req.body.content
+        }
+        ticket.save().then(ticket => {
+            res.json('ticket updated');
+        })
+            .catch(err => {
+                res.status(400).send("Update not possible");
+            });
+    })
+
+});
+
+
 //@route DELETE api/tickets/:id
 //@desc Delete a post
 //@access private

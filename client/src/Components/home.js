@@ -11,7 +11,6 @@ export default class Home extends React.Component {
         ticket: []
     };
 
-
     componentDidMount() {
         const user = getUser();
         if(user) {
@@ -27,9 +26,9 @@ export default class Home extends React.Component {
     render(){
         return this.state.ticket.length > 0 ? <CardGroup style={{marginTop: 300}}>
                 {this.state.ticket.map((ticket) => <Ticket
-                title={ticket.title}
+                  id={ ticket._id }
                 description={ticket.content}/>)}
-                </CardGroup> : <div>Pas encore de ticket</div>
+                </CardGroup> : <div className="jumbotron text-center">Connectez vous pour pouvoir poster !</div>
 
     }
 }

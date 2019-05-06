@@ -1,16 +1,14 @@
 import React from 'react';
-import {Card} from "react-bootstrap";
+import ListGroupItem from "react-bootstrap/ListGroupItem";
+import Button from "react-bootstrap/Button";
 
 const Ticket = (props) => (
-    <Card>
-        <Card.Img variant="top" src="" />
-        <Card.Body>
-            <Card.Title>{props.title}</Card.Title>
-            <Card.Text>
-                {props.description}
-            </Card.Text>
-        </Card.Body>
-    </Card>
+    <div className="container">
+        <ListGroupItem className="bloggos">
+            <p>{props.description}</p>
+            <Button href={"/edit/"+props.id}>Edit</Button>
+        </ListGroupItem>
+    </div>
 );
 
 export default Ticket

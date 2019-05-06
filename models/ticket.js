@@ -3,10 +3,6 @@ const Schema = mongoose.Schema;
 
 //Posts schema
 const TicketSchema = new Schema ({
-    title: {
-        type: String,
-        required: true
-    },
     content: {
         type: String,
     },

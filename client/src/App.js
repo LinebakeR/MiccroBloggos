@@ -9,6 +9,7 @@ import Profile from './Components/profile';
 import Register from './Components/register';
 import "bootstrap/dist/css/bootstrap.min.css";
 import createTicket from "./Components/createTicket";
+import editTicket from "./Components/editTicket";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                 <Route exact path="/profile" component={Profile} />
                 <Route exact path="/members" component={List} />
                 <Route exact path="/create" component={createTicket} />
+                <Route exact path="/edit/:id" component={editTicket} />
             </Router>
         </div>
     );

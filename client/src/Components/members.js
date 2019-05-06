@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Table} from 'react-bootstrap';
 import axios from 'axios';
-import {getUser} from "../Utils/auth";
 
 export default class List extends Component {
     constructor(props) {
@@ -14,7 +13,6 @@ export default class List extends Component {
     }
     
         componentDidMount() {
-        const user = getUser();
             axios.get('http://localhost:4242/api/users')
                 .then(res => {
                     console.log(res);
