@@ -7,6 +7,7 @@ import List from './Components/members';
 import Navbar from './Components/navbar';
 import Profile from './Components/profile';
 import Register from './Components/register';
+import Footer from './Components/footer';
 import "bootstrap/dist/css/bootstrap.min.css";
 import createTicket from "./Components/createTicket";
 import editTicket from "./Components/editTicket";

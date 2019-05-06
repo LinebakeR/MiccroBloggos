@@ -59,21 +59,17 @@ export default class Profile extends React.Component {
 
     render() {
         return (
-            <div className='container mt-5 ml-5'>
+            <div className='container mt-5 ml-5' >
                 <Card
                     bg="dark"
                     text="white"
-                    style={{
-                    width: '50rem'
-                }}>
-                    <Card.Header>Your Profile</Card.Header>
-                    <Card.Body>
+                    style={{width: '50rem', backgroundColor: "#373E46"}} >
+                    <Card.Header style={{textAlign: "center", backgroundColor: "#373E46"}}>Your Profile</Card.Header>
+                    <Card.Body style={{textAlign: "center", backgroundColor: "#373E46"}}>
                         <Card.Title
-                            style={{
-                            textAlign: "center"
-                        }}>Hello {this.state.username}
+                            style={{textAlign: "center", backgroundColor: "#373E46"}}>Hello {this.state.username}
                             !</Card.Title>
-                        <Card.Text>
+                        <Card.Text style={{textAlign: "center", backgroundColor: "#373E46"}}>
                             <tr>
                                 <td>Your username is :</td>
                                 <td>

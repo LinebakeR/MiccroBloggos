@@ -25,7 +25,7 @@ export default class Home extends React.Component {
     render(){
         return this.state.ticket.length > 0 ? <div
             className="container jumbotron"
-            style={{marginTop: 50, backgroundColor: "#008abe"}}>
+            style={{marginTop: 50, backgroundColor: "#373E46"}}>
             {this.state.ticket.map((ticket) => <Ticket
                 id={ ticket._id }
                 description={ticket.content}/>)}

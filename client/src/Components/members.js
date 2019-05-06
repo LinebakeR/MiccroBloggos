@@ -26,23 +26,23 @@ export default class List extends Component {
 
         render() {
             return (
-                <div className='container col-sm-10'style={{marginTop: 110}}>
+                <div className='container col-sm-12'>
                 {this.state.users.map((user)=> {
                     return(
-                    <Table striped bordered hover variant="dark">
-                        <thead>
-                          <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>{user.username}</td>
-                            <td>{user.email}</td>
-                          </tr>
-                        </tbody>
-                    </Table>
+                        <table class="table table-dark" style={{marginTop: 50, backgroundColor: "#373E46"}}>
+                            <thead>
+                                <tr>
+                                <th scope="col">FirstName</th>
+                                <th scope="col">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td>{user.username}</td>
+                                <td>{user.email}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     );
                 })}
                 </div>
@@ -50,3 +50,5 @@ export default class List extends Component {
             )
         } 
 }  
+
+
