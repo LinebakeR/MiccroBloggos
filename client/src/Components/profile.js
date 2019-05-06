@@ -47,6 +47,8 @@ export default class Profile extends React.Component {
         axios.put('http://127.0.0.1:4242/api/users/edit', profile, {headers: {'x-auth-token': token}})
             .then(res => {
                 console.log('Updated !')
+                localStorage.removeItem('jwtSecret');
+                this.props.history.push("/");
                 console.log(profile);
                 return res.data
             })
