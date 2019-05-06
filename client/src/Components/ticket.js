@@ -3,7 +3,7 @@ import ListGroupItem from "react-bootstrap/ListGroupItem";
 import Button from "react-bootstrap/Button";
 
 const Ticket = (props) => (
-    <div className="container">
+    <div className="container mt-4">
         <ListGroupItem className="bloggos">
             <p>{props.description}</p>
             <Button href={"/edit/"+props.id}>Edit</Button>

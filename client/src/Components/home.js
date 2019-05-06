@@ -1,5 +1,4 @@
 import React from 'react';
-import {CardGroup} from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Ticket from "./ticket";
 import axios from "axios";
@@ -24,12 +23,14 @@ export default class Home extends React.Component {
     }
 
     render(){
-        return this.state.ticket.length > 0 ? <CardGroup style={{marginTop: 300}}>
-                {this.state.ticket.map((ticket) => <Ticket
-                  id={ ticket._id }
+        return this.state.ticket.length > 0 ? <div
+            className="container jumbotron"
+            style={{marginTop: 50, backgroundColor: "#008abe"}}>
+            {this.state.ticket.map((ticket) => <Ticket
+                id={ ticket._id }
                 description={ticket.content}/>)}
-                </CardGroup> : <div className="jumbotron text-center">Connectez vous pour pouvoir poster !</div>
+            <a className="mt-3 ml-3 btn btn-success" href="/create" role="button">Create Post</a>
+        </div> : <div className="jumbotron text-center">Connectez vous pour pouvoir poster !</div>
 
     }
 }
-

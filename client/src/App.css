@@ -1,4 +1,6 @@
-
+.App {
+  background-color: #18a1d6;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;

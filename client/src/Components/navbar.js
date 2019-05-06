@@ -32,7 +32,6 @@ class Navbar extends React.Component {
                                     <Nav.Link href="/login">Login</Nav.Link>
                                     <Nav.Link href="/register">Register</Nav.Link>
                                         <Button onClick={()=> {
-                                            console.log('je suis la');
                                             localStorage.removeItem('jwtSecret');
                                             this.props.history.push("/");
                                         }}>Logout</Button>
