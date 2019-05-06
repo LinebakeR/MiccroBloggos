@@ -10,20 +10,20 @@ import Register from './Components/register';
 import "bootstrap/dist/css/bootstrap.min.css";
 import createTicket from "./Components/createTicket";
 import editTicket from "./Components/editTicket";
+import Layout from "./Components/layout";
 
 
 function App() {
     return (
         <div className="App">
             <Router>
-                <Navbar />
-                <Route exact path="/" component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/profile" component={Profile} />
-                <Route exact path="/members" component={List} />
-                <Route exact path="/create" component={createTicket} />
-                <Route exact path="/edit/:id" component={editTicket} />
+                <Layout exact path="/" component={Home} />
+                <Layout exact path="/login" component={Login} />
+                <Layout exact path="/register" component={Register} />
+                <Layout exact path="/profile" component={Profile} />
+                <Layout exact path="/members" component={List} />
+                <Layout exact path="/create" component={createTicket} />
+                <Layout exact path="/edit/:id" component={editTicket} />
             </Router>
         </div>
     );
