@@ -11,12 +11,8 @@ export default class Register extends React.Component {
             email: '',
             password: ''
         }
-        this.onChange = this
-            .onChange
-            .bind(this)
-        this.onSubmit = this
-            .onSubmit
-            .bind(this)
+        this.onChange = this.onChange.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
     }
     onChange(e) {
         this.setState({

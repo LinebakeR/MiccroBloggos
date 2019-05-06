@@ -53,10 +53,6 @@ router.post('/', (req, res) => {
 // @route   Get api/auth/user
 // @desc    Get user data
 // @access  Private
-// router.get('/user', auth, (req, res) => {
-//     let param = {_id: req.query.id}
-//     User.findById(param, function(err, user))
-//         .then(user=> res.json(user))
-// });
+// 
 
 module.exports = router;
