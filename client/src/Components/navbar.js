@@ -4,10 +4,11 @@ import {Nav} from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import { withRouter } from 'react-router-dom';
-
+import logo from "../../logo.png"
 class Navbar extends React.Component {
 
     render() {
+
         console.log(this.props);
         const loginRegLink = (
                     <div className='navbar navbar-expand-lg' id='navbar1'>
