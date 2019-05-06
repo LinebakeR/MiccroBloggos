@@ -9,6 +9,9 @@ const TicketSchema = new Schema ({
     },
     content: {
         type: String,
+    },
+    userId: {
+        type: String
     }
 });
 

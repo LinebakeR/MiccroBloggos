@@ -25,7 +25,7 @@ export default class Register extends React.Component {
             username: this.state.username,
             email: this.state.email,
             password: this.state.password
-        }
+        };
         axios
             .post('http://127.0.0.1:4242/api/users', user)
             .then(res => {

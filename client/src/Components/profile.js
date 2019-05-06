@@ -1,8 +1,13 @@
 import React from 'react';
 import jwt_decode from 'jwt-decode';
+<<<<<<< HEAD
 import {Button, Modal, Card, Form} from 'react-bootstrap';
 import axios from 'axios';
 
+=======
+import {Card} from 'react-bootstrap';
+import {getUser} from "../Utils/auth";
+>>>>>>> 951632788e45f7ae18ac111a078c76391d83f839
 
 export default class Profile extends React.Component {
     constructor() {
@@ -13,6 +18,7 @@ export default class Profile extends React.Component {
             id: '',
             show: false,
         }
+<<<<<<< HEAD
         this.onChange = this.onChange.bind(this)
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -50,6 +56,17 @@ export default class Profile extends React.Component {
                 console.log('Updated with success')
                 return res.data
             })
+=======
+    }
+
+    componentDidMount() {
+        const user = getUser();
+        this.setState({
+            username: user.username,
+            email: user.email,
+            ìd: user.id
+        })
+>>>>>>> 951632788e45f7ae18ac111a078c76391d83f839
     }
 
     render() {

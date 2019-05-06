@@ -1,44 +1,36 @@
 import React from 'react';
-import {Card, CardGroup} from 'react-bootstrap';
+import {CardGroup} from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
+import Ticket from "./ticket";
+import axios from "axios";
+import {getUser} from "../Utils/auth";
+
 
 export default class Home extends React.Component {
+    state = {
+        ticket: []
+    };
+
+
+    componentDidMount() {
+        const user = getUser();
+        if(user) {
+            axios
+                .get('http://127.0.0.1:4242/api/tickets/user/'+ user.id)
+                .then(res => {
+                    console.log('ticket successfully get', res.data);
+                    this.setState({ticket: res.data})
+                })
+        }
+    }
+
     render(){
-        return(
-            <CardGroup style={{marginTop: 300}}>
-                <Card>
-                    <Card.Img variant="top" src="" />
-                    <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                        This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                    </Card.Text>
-                    </Card.Body>
-                </Card>
-                <Card>
-                    <Card.Img variant="top" src="" />
-                    <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                        This card has supporting text below as a natural lead-in to additional
-                        content.{' '}
-                    </Card.Text>
-                    </Card.Body>
-                </Card>
-                <Card>
-                    <Card.Img variant="top" src="" />
-                    <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                        This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This card has even longer content than the first to
-                        show that equal height action.
-                    </Card.Text>
-                    </Card.Body>
-                </Card>
-                </CardGroup>
-        )
+        return this.state.ticket.length > 0 ? <CardGroup style={{marginTop: 300}}>
+                {this.state.ticket.map((ticket) => <Ticket
+                title={ticket.title}
+                description={ticket.content}/>)}
+                </CardGroup> : <div>Pas encore de ticket</div>
+
     }
 }
 
