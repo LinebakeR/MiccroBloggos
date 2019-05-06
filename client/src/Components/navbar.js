@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 class Navbar extends React.Component {
 
     render() {
-        console.log(this.props)
+        console.log(this.props);
         return (
             <div>
                 <Nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
@@ -18,7 +18,6 @@ class Navbar extends React.Component {
                             data-target='#navbar1'
                             aria-expanded='false'
                             aria-label='Toogle navigation'>
-                            <span className='navbar-toogler-icons'></span>
                     </button>
 
                     <div className='collapse navbar-collapse justify-content-md-center' id='navbar1'>
