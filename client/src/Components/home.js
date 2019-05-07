@@ -24,13 +24,16 @@ export default class Home extends React.Component {
 
     render(){
         return this.state.ticket.length > 0 ? <div
-            className="container jumbotron"
-            style={{marginTop: 50, backgroundColor: "#373E46"}}>
+            className="jumbotron"
+            style={{marginTop: 50, backgroundColor: "#5bc0de"}}>
             {this.state.ticket.map((ticket) => <Ticket
                 id={ ticket._id }
                 description={ticket.content}/>)}
             <a className="mt-3 ml-3 btn btn-success" href="/create" role="button">Create Post</a>
-        </div> : <div className="jumbotron text-center">Connectez vous pour pouvoir poster !</div>
+        </div> : <div className="container jumbotron text-center mt-4"
+                      style={{fontWeight: "bold"}}>
+            Connectez vous pour pouvoir poster !
+        </div>
 
     }
 }

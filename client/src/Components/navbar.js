@@ -1,11 +1,10 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Nav} from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import logo from "../logo.png";
-import logo2 from "../morty.png";
+import logo2 from "../Logo3.png";
+
 class Navbar extends React.Component {
 
     render() {
@@ -13,36 +12,39 @@ class Navbar extends React.Component {
         console.log(this.props);
         const loginRegLink = (
             <>
-                <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-                <img src={logo} className="App-logo" alt="logo"/>
-                    <a class="navbar-brand" href="/">Home</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="/profile">Profile <span class="sr-only"></span></a>
+                <nav className="navbar navbar-expand-lg navbar-dark bg-info">
+                    <a className="navbar-nav" href="/">
+                        <img src={logo2} className="App-logo navbar navbar-lg" alt="logo"/>
+                    </a>
+                    <a className="navbar-brand" href="/register">Register</a>
+                        <div className="collapse navbar-collapse" id="navbarNav">
+                            <ul className="navbar-nav">
+                                <li className="nav-item active">
+                                    <a className="nav-link" href="/profile">Profile <span className="sr-only"></span></a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/members">Members</a>
+                                <li className="nav-item">
+                                    <Link to ={"/members"}>Members</Link>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" onClick={()=> {
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#" onClick={()=> {
                                         localStorage.removeItem('jwtSecret');
-                                        this.props.history.push("/");
+                                        this.props.history.push("/login");
                                     }}>Logout</a>
                                 </li>
                             </ul>
                         </div>
                 </nav>
-            </>        
-        )
+            </>
+        );
         const userLink = (
             <>
-                <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-                    <img src={logo2} className="App-logo navbar navbar-lg" alt="logo"/>
+                <nav class="navbar navbar-expand-lg navbar navbar-dark bg-info">
+                    <a className="navbar-nav" href="/">
+                        <img src={logo} className="App-logo navbar navbar-lg" alt="logo"/></a>
                     <a class="navbar-brand" href="/register">Register</a>
+
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    </button>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -56,10 +58,10 @@ class Navbar extends React.Component {
                     </div>
                 </nav>
             </>
-        )
+        );
         return (
             <div>
-                    <button className='navbar-toggler'
+                    <button className='navbar navbar-toggler fixed-top'
                             type='button'
                             data-toogle='collapse'
                             data-target='#navbar1'

@@ -9,7 +9,6 @@ export default function DefaultLayout ({component: MatchedPage, ...rest}) {
             <div>
                 <Navbar />
                 <MatchedPage {...matchProps} />
-                <Footer />
             </div>
         )} />
     )
