@@ -11,14 +11,17 @@ class createTicket extends Component {
 
         this.state = {
             content: '',
-            userId: ''
+            userId: '',
+            length: 140
         }
     }
 
-    onChangeContent(e) {
+    onChangeContent = e => {
+        const content= e.target.value
         this.setState({
-            content: e.target.value
+            content
         });
+        
     }
 
     onSubmit(e) {
@@ -51,12 +54,15 @@ class createTicket extends Component {
                     <div className="form-group">
                         <label>content: </label>
                         <textarea type="text"
-                                  maxLength="140"
+                                  maxLength='140'
                                   className="form-control"
                                   value={this.state.content}
                                   onChange={this.onChangeContent}
                                   rows="10"
                         />
+                    </div>
+                    <div className="info">
+                    {this.state.length - this.state.content.length}
                     </div>
                     <div className="form-group">
                         <input type="submit" value="Post" className="btn btn-success" />
