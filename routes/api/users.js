@@ -83,7 +83,7 @@ router.put('/follow/:id', auth, async (req, res) => {
       user.followers.filter(follow => follow.user.toString() === req.user.id)
         .length > 0
     ) {
-      return res.status(400).json({ msg: 'Post already liked' });
+      return res.status(400).json({ msg: 'User already followed' });
     }
 
     user.followers.unshift({ user: req.user.id });
@@ -95,6 +95,42 @@ router.put('/follow/:id', auth, async (req, res) => {
     res
       .status(200)
       .json({ user: user.followers, following: isFollow.following });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+//Route PUT api/unfollow/:id
+//unfollow a user
+//Acces privé
+router.put('/unfollow/:id', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    const isUnfollow = await User.findById(req.user.id);
+
+    if (
+      user.followers.filter(follow => follow.user.toString() === req.user.id)
+        .length === 0
+    ) {
+      return res.status(400).json({ msg: 'User is not followed' });
+    }
+    const removeFollow = user.followers
+      .map(follow => follow.user.toString())
+      .indexOf(req.user.id);
+
+    const removeFollowing = isUnfollow.following
+      .map(follower => follower.isUnfollow)
+      .indexOf(req.params.id);
+    user.followers.splice(removeFollow, 1);
+    isUnfollow.following.splice(removeFollowing, 1);
+
+    await user.save();
+    await isUnfollow.save();
+
+    res
+      .status(200)
+      .json({ user: user.followers, isUnfollow: isUnfollow.following });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
