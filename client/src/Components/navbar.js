@@ -23,7 +23,7 @@ class Navbar extends React.Component {
                                     <a className="nav-link" href="/profile">Profile <span className="sr-only"></span></a>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to ={"/members"}>Members</Link>
+                                    <a className='nav-link' href={"/members"}>Members</a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" href="#" onClick={()=> {
