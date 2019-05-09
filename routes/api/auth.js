@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
                 .then(isMatch => {
                     if(!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
                     jwt.sign(
-                        { id: user.id, username: user.username, email: user.email },
+                        { id: user.id, username: user.username, email: user.email, role: user.role },
                         config.get('jwtSecret'),
                         { expiresIn: 3600 },
                         (err, token) => {
@@ -39,11 +39,12 @@ router.post('/', (req, res) => {
                                 user: {
                                     id: user.id,
                                     username: user.username,
-                                    email: user.email
+                                    email: user.email,
+                                    role: user.role
                                 }
                                 
                             });
-                            console.log(token)
+                            console.log(user)
                         }
                     )
                 })

@@ -10,7 +10,7 @@ const User = require('../../models/User');
 
 // @route   POST api/users @desc    Register new user @access  Public
 router.post('/', (req, res) => {
-    const {username, email, password} = req.body;
+    const {username, email, password, role} = req.body;
     // Simple validation
     if (!username || !email || !password) {
         return res
@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
             if (user) 
                 return res.status(400).json({msg: 'User already exists'});
             
-            const newUser = new User({username, email, password});
+            const newUser = new User({username, email, password, role});
 
             // Create salt & hash
             bcrypt.genSalt(10, (err, salt) => {
@@ -36,27 +36,13 @@ router.post('/', (req, res) => {
                     newUser
                         .save()
                         .then(user => {
-                            jwt.sign({
-                                id: user.id,
-                                username: user.username,
-                                email: user.email
-
-                            }, config.get('jwtSecret'), {
-                                expiresIn: 3600
-                            }, (err, token) => {
-                                if (err) 
-                                    throw err;
-                                res.json({
-                                    token,
-                                    
-                                });
-                                console.log(token);
-                            })
-                        });
-                })
+                            res.send('User registered') 
+                        })
+                    });
             })
         })
 });
+
 router.get('/', (req, res) => {
     User.find({})
     .then(users => {
@@ -66,17 +52,16 @@ router.get('/', (req, res) => {
 });
 
 router.put('/edit', auth, (req, res) => {
+    //console.log(req)
     let userId = { _id: req.user.id }
     let update = {username: req.body.username, email: req.body.email}
     let option = {returnNewDocument: true}
-    console.log('coucou1', req.user);
     User.findOneAndUpdate(userId, { $set: update }, option, function(
     err,
     user
     ) {
-        console.log('coucou2');
       if (err) {
-          console.log("[", err, "]")
+          console.log(err)
         res.status(400);
         res.send(err);
         return;
@@ -85,6 +70,20 @@ router.put('/edit', auth, (req, res) => {
     },
     )
 });
+
+router.delete('/delete', auth, (req, res) =>{
+     let userId = {id: req.user.id}
+     console.log(req)
+        User.findByIdAndRemove(userId, function(err, res) {
+            if(err){
+                res.status(400);
+                res.send(err);
+                return;
+            }
+            res.send({message: ' User deleted'})
+        })
+});
+        
 
 
 module.exports = router;
