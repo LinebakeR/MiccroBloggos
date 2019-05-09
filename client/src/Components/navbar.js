@@ -1,6 +1,5 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { withRouter, Link } from 'react-router-dom';
 import logo from "../logo.png";
 import logo2 from "../Logo3.png";
@@ -9,14 +8,12 @@ class Navbar extends React.Component {
 
     render() {
 
-        console.log(this.props);
         const loginRegLink = (
             <>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-info">
                     <a className="navbar-nav" href="/">
                         <img src={logo2} className="App-logo navbar navbar-lg" alt="logo"/>
                     </a>
-                    <a className="navbar-brand" href="/register">Register</a>
                         <div className="collapse navbar-collapse" id="navbarNav">
                             <ul className="navbar-nav">
                                 <li className="nav-item active">

@@ -12,7 +12,7 @@ class createTicket extends Component {
         this.state = {
             content: '',
             userId: '',
-            length: 140
+            length: 125,
         }
     }
 
@@ -26,10 +26,6 @@ class createTicket extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-
-        console.log(`Form submitted:`);
-        console.log(`content: ${this.state.todo_responsible}`);
-
         const Ticket = {
             content: this.state.content
         };
@@ -54,7 +50,7 @@ class createTicket extends Component {
                     <div className="form-group">
                         <label>content: </label>
                         <textarea type="text"
-                                  maxLength='140'
+                                  maxLength='125'
                                   className="form-control"
                                   value={this.state.content}
                                   onChange={this.onChangeContent}
@@ -69,7 +65,6 @@ class createTicket extends Component {
                     </div>
                 </form>
             </div>
-
         )
     }
 }

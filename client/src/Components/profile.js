@@ -32,9 +32,9 @@ export default class Profile extends React.Component {
         const token = localStorage.getItem('jwtSecret');
         console.log(token);
         const decoded = jwt_decode(token)
-        this.setState({username: decoded.username, email: decoded.email, ìd: decoded.id})
-         this.setState({newName: this.props.username});
-         this.setState({newEmail: this.props.email});
+        this.setState({username: decoded.username, email: decoded.email, id: decoded.id})
+        //  this.setState({newName: this.props.username});
+        //  this.setState({newEmail: this.props.email});
     }
     editProfile = e => {
 
@@ -43,11 +43,9 @@ export default class Profile extends React.Component {
             email: this.state.email
         };
         const token = localStorage.getItem('jwtSecret');
-        console.log(this.state.newName)
         axios.put('http://127.0.0.1:4242/api/users/edit', profile, {headers: {'x-auth-token': token}})
             .then(res => {
                 console.log('Updated !')
-                localStorage.removeItem('jwtSecret');
                 this.props.history.push("/");
                 console.log(profile);
                 return res.data
@@ -56,6 +54,8 @@ export default class Profile extends React.Component {
                 console.log(err);
             })
     }
+
+    
 
     render() {
         return (
