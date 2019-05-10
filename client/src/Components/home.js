@@ -16,10 +16,7 @@ export default class Home extends React.Component {
       this.props.history.push('/login');
     } else {
       const user = getUser();
-      const token = localStorage.getItem('jwtSecret');
-      console.log(token);
-      const decoded = jwt_decode(token);
-      this.setState({ username: decoded.username });
+      this.setState({ username: user.username });
 
       if (user) {
         axios

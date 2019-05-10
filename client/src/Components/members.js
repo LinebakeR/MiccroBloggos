@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import '../../src/App.css';
+import followButton from './followButton';
+import { getUser } from '../Utils/auth';
+
 
 export default class List extends Component {
   constructor(props) {
@@ -27,8 +30,21 @@ export default class List extends Component {
         console.log(error);
       });
   }
+
+  followUser = e => {
+    console.log(e.target.id);
+    const token = getUser()
+    this.setState({id: token.id})
+    axios.get('http://localhost:4242/api/users/follow', token._id, {headers: { 'x-auth-token': token}
+  })
+    .then(res => {
+      console.log('Member followed!')
+    })
+  }
+
   render() {
     return (
+      
       <div className='container col-sm-6 align-left'>
         {this.state.users.map(user => {
           return (
@@ -36,6 +52,8 @@ export default class List extends Component {
               <div className='theader'>
                 <div className='table_header'>Username</div>
                 <div className='table_header'>Email</div>
+                <div className='table_header'></div>
+                
               </div>
               <div className='table_row'>
                 <div className='table_small'>
@@ -46,8 +64,15 @@ export default class List extends Component {
                   <div className='table_cell'></div>
                   <div className='table_cell'>{user.email}</div>
                 </div>
+                <div className='table_small'>
+                  <div className='table_cell'></div>
+                  <div className='btn btn-link'
+                  id={user._id} 
+                  onClick={this.followUser}>Follow me!</div>
                 </div>
                 </div>
+                </div>
+                
           );
         })}    
       </div>
