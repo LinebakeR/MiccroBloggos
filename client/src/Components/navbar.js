@@ -42,11 +42,11 @@ class Navbar extends React.Component {
     );
     const userLink = (
       <>
-        <nav class='navbar navbar-expand-lg navbar navbar-dark bg-info'>
+        <nav className='navbar navbar-expand-lg navbar navbar-dark bg-info'>
           <a className='navbar-nav' href='/'>
             <img src={logo} className='App-logo navbar navbar-lg' alt='logo' />
           </a>
-          <a class='navbar-brand' href='/register'>
+          <a className='navbar-brand' href='/register'>
             Register
           </a>
 

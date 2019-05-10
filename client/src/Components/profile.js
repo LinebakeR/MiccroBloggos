@@ -55,7 +55,8 @@ export default class Profile extends React.Component {
       })
       .then(res => {
         console.log('Updated !');
-        this.props.history.push('/profile');
+        localStorage.removeItem('jwtSecret');
+        this.props.history.push('/login');
         console.log(profile);
         return res.data;
       })
