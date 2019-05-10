@@ -60,9 +60,9 @@ export default class Profile extends React.Component {
         const decoded = jwt_decode(token).id
         this.setState({id: decoded.id})
         console.log(userDel)
-        axios.delete('http://localhost:4242/api/users/delete', decoded, {headers: {'x-auth-token': token}})
+        axios.delete('http://localhost:4242/api/users/delete', {headers: {'x-auth-token': token}})
         .then(res =>{
-            res.send('User deleted');
+            console.log('User deleted');
             console.log(res)
         })
         .catch(function(error){

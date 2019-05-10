@@ -56,16 +56,16 @@ router.put('/edit', auth, (req, res) => {
   });
 });
 
-router.delete('/delete', auth, async (req, res) => {
-  try {
-    await User.findOneAndRemove({ user: req.user.id });
-
-    res.json({ msg: 'User deleted' });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
+router.delete('/delete/:id', auth, async (req, res) => {
+  let id = req.user.id;
+  User.findOneAndRemove({id: _id}), function(err){
+    if(err) {
+      console.log(err)
+      return res.status(500)
+    }
+    return res.status(200).send();
   }
-});
+})
 
 //Route PUT api/follow/:id
 //follow a user
