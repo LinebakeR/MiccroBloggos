@@ -37,13 +37,11 @@ router.post('/', (req, res) => {
 
 router.get('/', (req, res) => {
   User.find({}).then(users => {
-    console.log(users);
     res.send(users);
   });
 });
 
 router.put('/edit', auth, (req, res) => {
-  //console.log(req)
   let userId = { _id: req.user.id };
   let update = { username: req.body.username, email: req.body.email };
   let option = { returnNewDocument: true };
@@ -58,17 +56,15 @@ router.put('/edit', auth, (req, res) => {
   });
 });
 
-router.delete('/delete', auth, (req, res) => {
-  let userId = { id: req.user.id };
-  console.log(req);
-  User.findByIdAndRemove(userId, function(err, res) {
-    if (err) {
-      res.status(400);
-      res.send(err);
-      return;
-    }
-    res.send({ message: ' User deleted' });
-  });
+router.delete('/delete', auth, async (req, res) => {
+  try {
+    await User.findOneAndRemove({ user: req.user.id });
+
+    res.json({ msg: 'User deleted' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
 });
 
 //Route PUT api/follow/:id
