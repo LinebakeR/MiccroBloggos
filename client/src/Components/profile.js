@@ -50,8 +50,7 @@ export default class Profile extends React.Component {
     };
     const token = localStorage.getItem('jwtSecret');
     axios
-      .put('http://127.0.0.1:4242/api/users/edit', profile, {
-        headers: { 'x-auth-token': token }
+      .put('http://127.0.0.1:4242/api/users/edit', profile, {headers: { 'x-auth-token': token }
       })
       .then(res => {
         console.log('Updated !');
@@ -67,14 +66,14 @@ export default class Profile extends React.Component {
   deleteUser = e => {
     const userDel = this.state.id;
     const token = localStorage.getItem('jwtSecret');
-    const decoded = jwt_decode(token).id;
     console.log(userDel);
     axios
-      .delete('http://localhost:4242/api/users/delete', decoded, {
-        headers: { 'x-auth-token': token }
+      .delete('http://localhost:4242/api/users/delete', {headers: { 'x-auth-token': token }
       })
       .then(res => {
-        res.send('User deleted');
+       console.log('User deleted');
+        localStorage.removeItem('jwtSecret');
+        this.props.history.push('/register');
         console.log(res);
       })
       .catch(function(error) {

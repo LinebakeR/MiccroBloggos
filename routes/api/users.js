@@ -56,14 +56,13 @@ router.put('/edit', auth, (req, res) => {
   });
 });
 
-router.delete('/delete/:id', auth, async (req, res) => {
-  let id = req.user.id;
-  User.findOneAndRemove({id: _id}), function(err){
-    if(err) {
-      console.log(err)
-      return res.status(500)
-    }
-    return res.status(200).send();
+router.delete('/delete', auth, async (req, res) => {
+  try{
+    await User.findOneAndRemove({_id: req.user.id})
+    res.json({message: 'User deleted'})
+  } catch(err){
+    console.log(err)
+    return res.status(500);
   }
 })
 
