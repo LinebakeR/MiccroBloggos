@@ -29,29 +29,30 @@ export default class List extends Component {
   }
   render() {
     return (
-      <div className='container col-sm-12'>
+      <div className='container col-sm-6 align-left'>
         {this.state.users.map(user => {
           return (
-            <table
-              class='table table-dark'
-              style={{ marginTop: 50, backgroundColor: '#373E46' }}
-            >
-              <thead>
-                <tr>
-                  <th scope='col'>FirstName</th>
-                  <th scope='col'>Email</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{user.username}</td>
-                  <td>{user.email}</td>
-                </tr>
-              </tbody>
-            </table>
+            <div className="table" id="results">
+              <div className='theader'>
+                <div className='table_header'>Username</div>
+                <div className='table_header'>Email</div>
+              </div>
+              <div className='table_row'>
+                <div className='table_small'>
+                  <div className='table_cell'></div>
+                  <div className='table_cell'>{user.username}</div>
+                </div>
+                <div className='table_small'>
+                  <div className='table_cell'></div>
+                  <div className='table_cell'>{user.email}</div>
+                </div>
+                </div>
+                </div>
           );
-        })}
+        })}    
       </div>
     );
-  }
+  } 
 }
+
+
