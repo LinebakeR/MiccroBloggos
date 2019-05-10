@@ -42,6 +42,7 @@ export default class Profile extends React.Component {
       //  this.setState({newName: this.props.username});
       //  this.setState({newEmail: this.props.email});
     }
+<<<<<<< HEAD
   }
   editProfile = e => {
     const profile = {
@@ -80,6 +81,49 @@ export default class Profile extends React.Component {
         console.log(error);
       });
   };
+=======
+    deleteUser = e => {
+        const userDel = this.state.id
+        const token = localStorage.getItem('jwtSecret');
+        const decoded = jwt_decode(token).id
+        this.setState({id: decoded.id})
+        console.log(userDel)
+        axios.delete('http://localhost:4242/api/users/delete', {headers: {'x-auth-token': token}})
+        .then(res =>{
+            console.log('User deleted');
+            console.log(res)
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+    
+    }
+
+    
+
+    render() {
+        return (
+            <div className='container mt-5 ml-5' >
+                <Card
+                    bg="dark"
+                    text="white"
+                    style={{width: '50rem', backgroundColor: "#373E46"}} >
+                    <Card.Header style={{textAlign: "center", backgroundColor: "#373E46"}}>Your Profile</Card.Header>
+                    <Card.Body style={{textAlign: "center", backgroundColor: "#373E46"}}>
+                        <Card.Title
+                            style={{textAlign: "center", backgroundColor: "#373E46"}}>Hello {this.state.username}
+                            !</Card.Title>
+                        <Card.Text style={{textAlign: "center", backgroundColor: "#373E46"}}>
+                            <tr>
+                                <td>Your username is :</td>
+                                <td>
+                                    {this.state.username}</td>
+                            </tr>
+                            <tr>
+                                <td>Your email is :</td>
+                                <td>{this.state.email}</td>
+                            </tr>
+>>>>>>> master
 
   render() {
     return (
