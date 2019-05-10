@@ -1,16 +1,21 @@
 import React from 'react';
-import ListGroupItem from "react-bootstrap/ListGroupItem";
-import Button from "react-bootstrap/Button";
+import { Link } from 'react-router-dom';
+import ListGroupItem from 'react-bootstrap/ListGroupItem';
+import Button from 'react-bootstrap/Button';
 
-const Ticket = (props) => (
-    <div className="container mt-4">
-        <ListGroupItem className="bloggos">
-            <h5>{props.description}</h5>
-            <a style={{color: "red", marginLeft: 1000}}>{props.name}</a> 
-            <br></br> 
-            <Button href={"/edit/"+props.id}>Edit</Button>
-        </ListGroupItem>
-    </div>
+const Ticket = props => (
+  <div className='container mt-4'>
+    <ul className=''>
+      <li>{props.description}</li>
+      <Link to='/profile' style={{ color: 'red', marginLeft: 1000 }}>
+        {props.name}
+      </Link>
+      <br />
+      <Button className='btn btn-primary' style={{ backgroundColor: 'white' }}>
+        <Link to={'/edit/' + props.id}>Edit</Link>
+      </Button>
+    </ul>
+  </div>
 );
 
-export default Ticket
+export default Ticket;
