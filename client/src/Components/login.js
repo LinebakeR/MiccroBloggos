@@ -27,7 +27,7 @@ export default class Login extends React.Component {
       .then(res => {
         localStorage.setItem('jwtSecret', res.data.token);
         console.log("you're logged in", res.data, user.email);
-        this.props.history.push('/profile');
+        this.props.history.push('/');
         return res.data;
       })
       .catch(err => {
