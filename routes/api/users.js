@@ -69,23 +69,48 @@ router.delete('/delete', auth, async (req, res) => {
 //Route PUT api/follow/:id
 //follow a user
 //Acces privé
-router.put('/follow/:id', auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id);
-    const isFollow = await User.findById(req.user.id);
+router.put('/follow/:id', auth, (req, res) => {
 
+  try {
+    let user =  User.findById(req.params.id);
+    let isFollow =  User.findById(req.user.id);
+if(user.followers){
+  console.log('dans le if USER')
     if (
       user.followers.filter(follow => follow.user.toString() === req.user.id)
         .length > 0
     ) {
       return res.status(400).json({ msg: 'User already followed' });
     }
-
     user.followers.unshift({ user: req.user.id });
-    isFollow.following.unshift({ user: req.params.id });
+  } else{
+    console.log('dans le else USER')
 
-    await user.save();
-    await isFollow.save();
+    user.followers = [{ user: req.user.id }];
+  } 
+  if(isFollow.following){
+    console.log('dans le if FOLLOW')
+
+    isFollow.following.unshift({ user: req.params.id });
+  } else{
+    console.log('dans le else FOLLOW')
+
+    isFollow.following = [{ user: req.params.id }];
+  }
+     User.findByIdAndUpdate(user, {$set: user }, function(err, user) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+    });
+     
+     User.findByIdAndUpdate(isFollow, {$set: isFollow}, function(err, user) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+    });
+
 
     res
       .status(200)

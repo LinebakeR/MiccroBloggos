@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import '../../src/App.css';
+import jwt_decode from 'jwt-decode';
 import followButton from './followButton';
 import { getUser } from '../Utils/auth';
 
@@ -33,13 +34,19 @@ export default class List extends Component {
 
   followUser = e => {
     console.log(e.target.id);
-    const token = getUser()
-    this.setState({id: token.id})
-    axios.get('http://localhost:4242/api/users/follow', token._id, {headers: { 'x-auth-token': token}
+    const token = localStorage.getItem('jwtSecret');
+    console.log(token, jwt_decode(token).id)
+    axios.put('http://localhost:4242/api/users/follow/' + e.target.id, token, {headers: { 'x-auth-token': token }
   })
     .then(res => {
-      console.log('Member followed!')
+      console.log(res);
+      console.log('Member followed!');
     })
+  .catch(res =>{
+    console.log(res);
+    
+  });
+
   }
 
   render() {

@@ -29,7 +29,7 @@ export default class Register extends React.Component {
         axios
             .post('http://127.0.0.1:4242/api/users', user)
             .then(res => {
-                this.props.history.push('/login');
+                this.props.history.push('/');
                 console.log('Registration success')
                 return res.data
             })

@@ -28,10 +28,7 @@ router.get('/me', auth, async (req, res) => {
 //Route type :Post endpoint: api/profile
 //créé ou modifie le profil
 //Acces privé
-router.post(
-  '/',
-  [
-    auth,
+router.post('/',[auth,
     [
       check('bio', 'Bio is required')
         .not()
